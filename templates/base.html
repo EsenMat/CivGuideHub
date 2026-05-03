@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay">
+        <header>
+            <nav class="civ-navbar">
+                <div class="nav-container">
+                    <a href="/" class="nav-logo">CivGuideHub</a>
+                    <ul class="nav-menu">
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/guides">Гайды</a></li>
+                        <li><a href="/challenges">Челленджи</a></li>
+                        {% if username %}
+                            <li><a href="/profile">{{ username }}</a></li>
+                        {% else %}
+                            <li><a href="/register">Вход</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main-panel">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+</body>
+</html>

@@ -13,7 +13,7 @@ def index():
     return render_template("index.html")
 
 
-'''@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def reqister():
     form = RegisterForm()
     if form.validate_on_submit():
@@ -35,15 +35,12 @@ def reqister():
         db_sess.add(user)
         db_sess.commit()
         return redirect('/login')
-    return render_template('register.html', title='Регистрация', form=form)'''
+    return render_template('register.html', title='Регистрация', form=form)
 
 
 def main():
     db_session.global_init("db/civ.db")
-    app.run(port=5000)
-
-
-
+    app.run(port=8080)
 
 
 if __name__ == '__main__':

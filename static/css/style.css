@@ -60,3 +60,45 @@ font-size: 30px;}
     color: #FF7F50;
     text-shadow: 0 0 8px #c4a64b;
 }
+
+
+.civ-register-form {
+    background: rgba(15, 20, 25, 0.85);
+    border: 2px solid #c4a64b;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    margin: 80px auto;
+    text-align: center;
+}
+
+
+.civ-input {
+    width: 100%;
+    padding: 16px;
+    margin-top: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #e5d1a7;
+    color: #f1e4c0;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.civ-input:focus {
+    outline: none;
+    border-color: #c4a64b;
+    box-shadow: 0 0 10px rgba(196, 166, 75, 0.5);
+}
+
+
+.civ-button {
+    background: #c4a64b;
+    color: #000000;
+    border: none;
+    padding: 10px 30px;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    text-transform: uppercase;
+}

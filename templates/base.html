@@ -14,10 +14,10 @@
                         <li><a href="/">Главная</a></li>
                         <li><a href="/guides">Гайды</a></li>
                         <li><a href="/challenges">Челленджи</a></li>
-                        {% if username %}
-                            <li><a href="/profile">{{ username }}</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="/profile">{{ current_user.name }}</a></li>
                         {% else %}
-                            <li><a href="/register">Вход</a></li>
+                            <li><a href="/login">Вход</a></li>
                         {% endif %}
                     </ul>
                 </div>

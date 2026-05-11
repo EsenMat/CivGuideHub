@@ -1,9 +1,9 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
 from data import db_session
 from data.guides import Guides
-from forms.user import RegisterForm, LoginForm
+from forms.user import RegisterForm, LoginForm, ProfileForm
 from data.users import User
-from flask_login import LoginManager, login_user, login_required, logout_user
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -31,7 +31,7 @@ def index():
 
 
 @app.route('/register', methods=['GET', 'POST'])
-def reqister():
+def register():
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
@@ -70,9 +70,28 @@ def login():
     return render_template('login.html', title='Авторизация', form=form)
 
 
+@app.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    form = ProfileForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.email == current_user.email).first()
+
+        user.name=form.name.data
+        user.about=form.about.data
+
+        db_sess.commit()
+        return redirect('/')
+    if request.method == 'GET':
+        form.name.data = current_user.name
+        form.about.data = current_user.about
+    return render_template('profile.html', title='Профиль', form=form)
+
+
 def main():
     db_session.global_init("db/civ.db")
-    app.run(port=5000)
+    app.run(port=8080)
 
 
 if __name__ == '__main__':

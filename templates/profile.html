@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Профиль</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div class="civ-register-form">
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(class="civ-input") }}<br>
+            {% for error in form.name.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.about.label }}<br>
+            {{ form.about(class="civ-input") }}<br>
+            {% for error in form.about.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <div class="auth-buttons-row">
+            {{ form.submit(type="submit", class="civ-button") }}
+            <a href="/logout" class="civ-button">Выйти</a>
+        </div>
+        {{message}}
+    </div>
+</form>
+{% endblock %}

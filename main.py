@@ -7,8 +7,13 @@ from data.users import User
 from data.images import Image
 from forms.guide import GuideForm
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from api.api import GuidesListResource, GuidesResource
+from flask_restful import Api
 
 app = Flask(__name__)
+api = Api(app)
+api.add_resource(GuidesListResource, '/api/guides')
+api.add_resource(GuidesResource, '/api/guides/<int:guides_id>')
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -192,7 +197,7 @@ def refactor_guide(id):
     if request.method == 'GET':
         form.title.data = guide.title
         form.content.data = guide.content
-        form.images.choices = [img for img in images]
+        form.images.choices = images
     return render_template('refactor_guide.html', title='Изменение гайда', form=form)
 
 

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ item.title }}</h1>
+<div class="civ-main">
+    <p>{{ item.content }}</p>
+    {% for img in images %}
+    <img src="{{ url_for('static', filename='img/' + img.path) }}" alt="Картинка не нашлась" title="{{ img.comment }}">
+    {% endfor %}
+</div>
+{% endblock %}

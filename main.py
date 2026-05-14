@@ -3,6 +3,7 @@ from data import db_session
 from data.guides import Guides
 from forms.user import RegisterForm, LoginForm, ProfileForm
 from data.users import User
+from data.images import Image
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 app = Flask(__name__)
@@ -89,9 +90,31 @@ def profile():
     return render_template('profile.html', title='Профиль', form=form)
 
 
+@app.route("/guides")
+def guides():
+    db_sess = db_session.create_session()
+    guides = db_sess.query(Guides).filter(Guides.type == 'guide')
+    return render_template("guides.html", guides=guides)
+
+
+@app.route("/guides/<int:id>")
+def guide(id):
+    db_sess = db_session.create_session()
+    guide = db_sess.query(Guides).filter(Guides.id == id).first()
+    images = db_sess.query(Image).filter(Image.guide_id == id)
+    return render_template('guide.html', item=guide, images=images)
+
+
+@app.route("/challenges")
+def challenges():
+    db_sess = db_session.create_session()
+    challenges = db_sess.query(Guides).filter(Guides.type == 'challenge')
+    return render_template("challenges.html", guides=challenges)
+
+
 def main():
     db_session.global_init("db/civ.db")
-    app.run(port=8080)
+    app.run(port=7000)
 
 
 if __name__ == '__main__':

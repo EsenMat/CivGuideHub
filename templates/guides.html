@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Гайды</h1>
+{% for item in guides%}
+<div class="civ-main" style="text-align: left">
+    <a href="/guides/{{ item.id }}" class="civ-button">{{item.title}}</a>
+    <p>Автор - {{ item.user.name }}</p>
+    <p>Дата создания - {{ item.created_date.strftime("%d.%m.%Y") }}</p>
+</div>
+{% endfor %}
+{% endblock %}

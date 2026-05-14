@@ -15,6 +15,7 @@
                         <li><a href="/guides">Гайды</a></li>
                         <li><a href="/challenges">Челленджи</a></li>
                         {% if current_user.is_authenticated %}
+                            <li><a href="/add_guides">Добавить гайд</a></li>
                             <li><a href="/profile">{{ current_user.name }}</a></li>
                         {% else %}
                             <li><a href="/login">Вход</a></li>

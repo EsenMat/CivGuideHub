@@ -7,6 +7,10 @@
     <a href="/guides/{{ item.id }}" class="civ-button">{{item.title}}</a>
     <p>Автор - {{ item.user.name }}</p>
     <p>Дата создания - {{ item.created_date.strftime("%d.%m.%Y") }}</p>
+    {% if item.user_id == current_user.id %}
+        <a href="/guides/{{ item.id }}/refactor" class="civ-button">Изменить</a>
+        <a href="/guides/{{ item.id }}/delete" class="civ-button">Удалить</a>
+    {% endif %}
 </div>
 {% endfor %}
 {% endblock %}

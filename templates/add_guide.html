@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Добавление гайда</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div class="civ-register-form">
+        <p>
+        {{ form.type.label }}<br>
+        {{ form.type(class="civ-input", type="email") }}<br>
+        {% for error in form.type.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+        </p>
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title(class="civ-input") }}<br>
+            {% for error in form.title.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.content.label }}<br>
+            {{ form.content(class="civ-input") }}<br>
+            {% for error in form.content.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.images.label }}<br>
+            {{ form.images(class="civ-input") }}<br>
+            {% for error in form.images.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit(type="submit", class="civ-button") }}</p>
+        <p>{{message}}</p>
+    </div>
+</form>
+{% endblock %}

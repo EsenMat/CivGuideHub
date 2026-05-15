@@ -140,7 +140,7 @@ def add_guides():
         )
         db_sess.add(guide)
         db_sess.flush()
-        for img in images:
+        for img in form.images.data:
             guide_image = db_sess.query(Image).filter(Image.path == img).first()
             if not guide_image:
                 guide_image = Image(path=img)
